@@ -7,38 +7,38 @@ using T2008M_NetCoreApi.Models;
 
 namespace T2008M_NetCoreApi.Repositories
 {
-    public class CategoriesRepository : ICategoriesRepository, IDisposable
+    public class StudentsRepository : IStudentsRepository, IDisposable
     {
         private DatabaseContext context;      
 
-        public CategoriesRepository(DatabaseContext context)
+        public StudentsRepository(DatabaseContext context)
         {
             this.context = context;
         }
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public async Task<IEnumerable<Student>> GetStudentsAsync()
         {
-            return await context.Categories.ToListAsync();
+            return await context.Students.ToListAsync();
         }
-        public async Task<Category> GetCategoryByIdAsync(int id)
+        public async Task<Student> GetStudentByIdAsync(int id)
         {
-            return await context.Categories.FindAsync(id);
-        }
-
-        public async Task AddCategoryAsync(Category category)
-        {
-            await context.Categories.AddAsync(category);            
+            return await context.Students.FindAsync(id);
         }
 
-        public async Task DeleteCategoryAsync(int id)
+        public async Task AddStudentAsync(Student student)
         {
-            Category ctg = await context.Categories.FindAsync(id);
-            context.Categories.Remove(ctg);
+            await context.Students.AddAsync(student);            
         }
 
-        public async Task UpdateCategoryAsync(Category category)
+        public async Task DeleteStudentAsync(int id)
         {
-            var categoryInDb = await context.Categories.FindAsync(category.Id);
-            categoryInDb = category;
+            Student ctg = await context.Students.FindAsync(id);
+            context.Students.Remove(ctg);
+        }
+
+        public async Task UpdateStudentAsync(Student student)
+        {
+            var studentInDb = await context.Students.FindAsync(student.Id);
+            studentInDb = student;
             await SaveChangesAsync();
         }
 

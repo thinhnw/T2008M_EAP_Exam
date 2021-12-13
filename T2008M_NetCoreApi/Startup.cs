@@ -34,8 +34,8 @@ namespace T2008M_NetCoreApi
         public void ConfigureServices(IServiceCollection services)
         {
             // them ket noi db
-            var connectionString = Configuration.GetConnectionString("T2008M_Database");
-            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddScoped<IStudentsRepository, StudentsRepository>();
             services.AddDbContextPool<Models.DatabaseContext>(options =>
             {
                 options.UseSqlServer(connectionString);

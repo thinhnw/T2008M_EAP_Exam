@@ -11,23 +11,23 @@ using T2008M_NetCoreApi.Repositories;
 
 namespace T2008M_NetCoreApi.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]    
-    public class CategoriesController : ControllerBase
+    public class StudentsController : ControllerBase
     {
-        private ICategoriesRepository repository;
+        private IStudentsRepository repository;
 
-        public CategoriesController(ICategoriesRepository repository)
+        public StudentsController(IStudentsRepository repository)
         {
             this.repository = repository;
         }
 
         // GET: api/Categories
         [HttpGet]
-        public async Task<IEnumerable<Category>> GetCategories()
+        public async Task<IEnumerable<Student>> GetCategories()
         {
-            return await repository.GetCategoriesAsync();
+            return await repository.GetStudentsAsync();
         }
 
         

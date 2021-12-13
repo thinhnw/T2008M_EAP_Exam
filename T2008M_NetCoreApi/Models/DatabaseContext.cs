@@ -13,8 +13,7 @@ namespace T2008M_NetCoreApi.Models
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Student> Students { get; set; }        
         
     }
 }
