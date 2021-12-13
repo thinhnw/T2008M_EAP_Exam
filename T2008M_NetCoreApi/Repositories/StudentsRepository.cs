@@ -26,19 +26,27 @@ namespace T2008M_NetCoreApi.Repositories
 
         public async Task AddStudentAsync(Student student)
         {
-            await context.Students.AddAsync(student);            
+            await context.Students.AddAsync(student);
+            await SaveChangesAsync();
         }
 
         public async Task DeleteStudentAsync(int id)
         {
             Student ctg = await context.Students.FindAsync(id);
-            context.Students.Remove(ctg);
+            if (ctg != null)
+            {
+                context.Students.Remove(ctg);
+            }
+            await SaveChangesAsync();
         }
 
         public async Task UpdateStudentAsync(Student student)
         {
             var studentInDb = await context.Students.FindAsync(student.Id);
-            studentInDb = student;
+            studentInDb.FirstName = student.FirstName;
+            studentInDb.LastName = student.LastName;
+            studentInDb.PhoneNumber = student.PhoneNumber;
+            studentInDb.Email = student.Email;
             await SaveChangesAsync();
         }
 
